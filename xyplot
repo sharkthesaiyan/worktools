@@ -1,0 +1,48 @@
+#!/usr/bin/env python
+# -*- coding: UTF-8 -*-
+from __future__ import unicode_literals
+
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib
+import sys
+
+def main():
+
+	if("-marker" in sys.argv):
+		marker = sys.argv[sys.argv.index("-marker")+1]
+	else:
+		marker = "-"
+
+	a = np.loadtxt(sys.argv[1])
+	plt.plot(a[:,0],a[:,1],marker)
+	
+	reload(sys)
+	sys.setdefaultencoding('utf-8')
+#	matplotlib.rc("font", family="Arial")
+
+	if("-xt" in sys.argv):
+		plt.xlabel(sys.argv[sys.argv.index("-xt")+1])
+
+	if("-yt" in sys.argv):
+		plt.ylabel(sys.argv[sys.argv.index("-yt")+1])
+
+	if("-t" in sys.argv):
+		plt.title(sys.argv[sys.argv.index("-t")+1])
+
+	if("-xmax" in sys.argv):
+		plt.xlim(xmax=float(sys.argv[sys.argv.index("-xmax")+1]))
+
+
+	if("-ymax" in sys.argv):
+		plt.ylim(ymax=float(sys.argv[sys.argv.index("-ymax")+1]))
+
+
+	if("-o" in sys.argv):
+		ofile = sys.argv[sys.argv.index("-o")+1]
+		plt.savefig(ofile)
+	else:
+		plt.show()
+
+if __name__ == "__main__":
+	main()
